@@ -1,0 +1,14 @@
+# Respaldos con datos reales de cosechas y trabajadores: no subirlos nunca
+respaldo-cosechas-*.json
+
+# Configuración de Claude Code (solo sirve en esta computadora)
+.claude/
+
+# Archivos que crea el sistema
+Thumbs.db
+desktop.ini
+.DS_Store
+
+# Por si algún día se instalan paquetes o hay registros
+node_modules/
+*.log
