@@ -49,7 +49,8 @@
     return {};
   }
   function estaVacia(h) {
-    return !h.fecha && !String(h.lugar || "").trim() && (h.precio === "" || h.precio == null) && !(h.trabajadores || []).length;
+    // La fecha no cuenta: se pone sola al crear la cosecha.
+    return !String(h.lugar || "").trim() && (h.precio === "" || h.precio == null) && !(h.trabajadores || []).length;
   }
   function faltan(h) {
     const f = [];
@@ -110,7 +111,7 @@
   }
   function nuevaCosecha() {
     const id = uid("c");
-    S.items[id] = { fecha: "", lugar: "", precio: "", lpt: LPT_DEFAULT, creado: Date.now(), trabajadores: [] };
+    S.items[id] = { fecha: hoy(), lugar: "", precio: "", lpt: LPT_DEFAULT, creado: Date.now(), trabajadores: [] };
     guardar(); S.open = id; entrar(); render(); window.scrollTo(0, 0);
   }
 
@@ -142,7 +143,7 @@
   function resumenTexto(h) {
     const c = calc(h), L = [];
     L.push("Cosecha " + fechaLarga(h.fecha) + (h.lugar ? " – " + h.lugar : ""));
-    L.push("Precio: " + nf2.format(c.precio) + " Bs por terada (" + c.lpt + " libras)");
+    L.push("Monto a pagar: " + nf2.format(c.precio) + " Bs por terada (" + c.lpt + " libras)");
     L.push("");
     c.rows.forEach((r, i) => L.push((i + 1) + ". " + r.w.nombre + ": " + nf0.format(r.libras) + " lb = " + nf2.format(r.teradas) + " teradas = " + nf2.format(r.pago) + " Bs" + (r.w.pagado ? " (pagado)" : "")));
     L.push("");
@@ -242,8 +243,8 @@
     h += '<section class="card"><h1>' + esc(c.fecha ? fechaLarga(c.fecha) : "Nueva cosecha") + '</h1><div class="row2">'
       + '<label>Fecha<input type="date" id="f-fecha" data-field="fecha"' + (falta.includes("fecha") ? ' class="falta"' : "") + ' value="' + esc(c.fecha) + '"></label>'
       + '<label>Lugar<input id="f-lugar" data-field="lugar"' + (falta.includes("lugar") ? ' class="falta"' : "") + ' placeholder="Ej. Las lomas" value="' + esc(c.lugar) + '"></label></div></section>';
-    h += '<section class="card price"><label>Precio de venta (Bs por terada)<input id="f-precio" data-field="precio" inputmode="decimal" value="' + esc(c.precio) + '">'
-      + '<span class="hint">Cuando cambie el precio de venta, cámbialo aquí: todos los pagos se recalculan solos. 1 terada = ' + k.lpt + " libras.</span></label></section>";
+    h += '<section class="card price"><label>Monto a pagar<input id="f-precio" data-field="precio" inputmode="decimal" value="' + esc(c.precio) + '">'
+      + '<span class="hint">Cuando cambie el monto, cámbialo aquí: todos los pagos se recalculan solos. 1 terada = ' + k.lpt + " libras.</span></label></section>";
 
     k.rows.forEach((r, i) => {
       const w = r.w, key = "w:" + w.id;

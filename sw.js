@@ -1,6 +1,6 @@
 // Service worker: guarda la app en el celular para que abra sin internet.
 // Cuando cambies cualquier archivo, sube el número de VERSION para que los celulares descarguen la nueva versión.
-const VERSION = "cosecha-v18";
+const VERSION = "cosecha-v21";
 const ARCHIVOS = [
   "./",
   "./index.html",

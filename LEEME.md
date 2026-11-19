@@ -4,7 +4,7 @@ App para el celular que anota las pesadas de cada trabajador y calcula:
 
 - **Suma de libras** = todas las pesadas
 - **Teradas** = suma de libras ÷ 12
-- **Pago en Bs** = teradas × precio de venta (el precio se puede cambiar en cada cosecha)
+- **Pago en Bs** = teradas × monto a pagar por terada (el monto se puede cambiar en cada cosecha)
 
 Funciona **sin internet** después de abrirla una vez con internet. Los datos se guardan en el celular.
 
