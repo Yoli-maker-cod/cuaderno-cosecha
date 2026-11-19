@@ -1,6 +1,6 @@
 # Cuaderno de Cosecha
 
-App para el celular que anota las pesadas de cada trabajador y calcula:
+App para el celular que anota las pesadas de cada cosechador y calcula:
 
 - **Suma de libras** = todas las pesadas
 - **Teradas** = suma de libras ÷ 12

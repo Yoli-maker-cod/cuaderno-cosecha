@@ -103,7 +103,7 @@
   function agregarTrabajador() {
     const inp = document.getElementById("nuevo-nombre");
     const n = inp.value.trim();
-    if (!n) { inp.focus(); toast("Escribe el nombre del trabajador."); return; }
+    if (!n) { inp.focus(); toast("Escribe el nombre del cosechador."); return; }
     const id = uid("w");
     cambiar((h) => h.trabajadores.push({ id, nombre: n, pesadas: [] }));
     const p = document.getElementById("peso-" + id);
@@ -218,7 +218,7 @@
       const k = calc(c);
       const key = "h:" + id;
       h += '<div class="harvest-item"><button class="harvest" data-act="open" data-id="' + esc(id) + '"><span><h3>' + esc(fechaLarga(c.fecha)) + '</h3><span class="muted small">'
-        + esc(c.lugar || "Sin lugar") + " · " + k.rows.length + " trabajador" + (k.rows.length === 1 ? "" : "es") + "</span></span>"
+        + esc(c.lugar || "Sin lugar") + " · " + k.rows.length + " cosechador" + (k.rows.length === 1 ? "" : "es") + "</span></span>"
         + '<span class="r num"><span class="bs">' + nf2.format(k.tot.pago) + ' Bs</span><br><span class="muted small">' + nf0.format(k.tot.libras) + " lb</span></span></button>"
         + '<button class="harvest-del' + (S.armed === key ? " armed" : "") + '" data-act="delitem" data-id="' + esc(id) + '">'
         + (S.armed === key ? "¿Eliminar? Toca otra vez" : "🗑 Eliminar") + "</button></div>";
@@ -263,17 +263,17 @@
           + '<div class="acciones"><button class="btn-danger" data-act="rmedit">Quitar pesada</button><button class="btn-ghost" data-act="canceledit">Cancelar</button></div></div>';
       }
       h += '<div class="add"><input id="peso-' + w.id + '" inputmode="decimal" enterkeyhint="done" placeholder="Libras de esta pesada" data-enter="peso" data-w="' + w.id + '">'
-        + '<button class="btn-main" data-act="addw" data-w="' + w.id + '">Añadir</button></div>';
+        + '<button class="btn-main" data-act="addw" data-w="' + w.id + '">Agregar</button></div>';
       h += '<div class="figures num"><div class="fig"><span class="lab">Libras</span><b>' + nf0.format(r.libras) + '</b></div>'
         + '<div class="fig"><span class="lab">Teradas</span><b>' + nf2.format(r.teradas) + '</b></div>'
         + '<div class="fig pay"><span class="lab">Pago Bs</span><b data-pago="' + w.id + '">' + nf2.format(r.pago) + "</b></div></div>";
       h += '<button class="pagado' + (w.pagado ? " si" : "") + '" data-act="pagado" data-w="' + w.id + '" aria-pressed="' + !!w.pagado + '">'
         + (w.pagado ? "✓ Pagado (tocar para desmarcar)" : "☐ Marcar como pagado") + "</button>";
       h += '<button class="' + (S.armed === key ? "btn-danger" : "btn-ghost") + '" data-act="delw" data-w="' + w.id + '">'
-        + (S.armed === key ? "Toca otra vez para quitar a " + esc(w.nombre) : "Quitar trabajador") + "</button></section>";
+        + (S.armed === key ? "Toca otra vez para quitar a " + esc(w.nombre) : "Quitar cosechador") + "</button></section>";
     });
 
-    h += '<section class="card"><label for="nuevo-nombre">Agregar trabajador</label><div class="add"><input id="nuevo-nombre" placeholder="Nombre" enterkeyhint="done" data-enter="nombre" autocomplete="off">'
+    h += '<section class="card"><label for="nuevo-nombre">Agregar cosechador</label><div class="add"><input id="nuevo-nombre" placeholder="Nombre" enterkeyhint="done" data-enter="nombre" autocomplete="off">'
       + '<button class="btn-soft" data-act="addworker">Agregar</button></div></section>';
 
     if (k.rows.length) {
@@ -342,7 +342,7 @@
     }
     else if (act === "delw") {
       if (S.armed !== "w:" + w) return armar("w:" + w);
-      S.armed = null; guardarDeshacer(S.open, "Trabajador quitado.");
+      S.armed = null; guardarDeshacer(S.open, "Cosechador quitado.");
       cambiar((h) => { h.trabajadores = h.trabajadores.filter((x) => x.id !== w); });
     }
     else if (act === "delh") {

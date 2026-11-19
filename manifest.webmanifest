@@ -1,7 +1,7 @@
 {
   "name": "Cuaderno de Cosecha",
   "short_name": "Cosecha",
-  "description": "Anota las pesadas de cada trabajador y calcula libras, teradas y pago. Funciona sin internet.",
+  "description": "Anota las pesadas de cada cosechador y calcula libras, teradas y pago. Funciona sin internet.",
   "lang": "es",
   "start_url": "./",
   "scope": "./",
